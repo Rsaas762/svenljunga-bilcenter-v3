@@ -1,0 +1,14 @@
+# Netlify configuration for the Svenljunga Bilcenter (v2) Next.js app.
+# Netlify auto-detects Next.js and loads its Next Runtime; this file just
+# pins the build so it's deterministic. Set LEAD_WEBHOOK_URL (and any other
+# secrets) in the Netlify UI → Site settings → Environment variables.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  # Next.js 16 requires Node 20+.
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

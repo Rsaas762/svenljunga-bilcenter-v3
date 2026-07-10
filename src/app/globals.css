@@ -1,0 +1,480 @@
+@import "tailwindcss";
+
+/*
+  Svenljunga Bilcenter — DARK AUTOMOTIVE THEME
+  (approved via visual brainstorm 2026-07-03)
+
+  Smoked-titanium heroes, gunmetal informational bands, carbon-fibre
+  cards/footer, a graphite/silver header, and one restrained cognac-leather
+  conversion moment (~3%: focus rings, material seams, the sell CTA).
+  Bright, clean vehicle photography is the only real colour.
+  Typography: Manrope (display) + Instrument Sans (body).
+
+  Token names are kept from the previous theme so components inherit the
+  dark values: `ink` is now the PRIMARY LIGHT text, `muted` the secondary,
+  `mist` a dark hairline, `brand` a neutral silver eyebrow accent. Cognac
+  lives only in the accent + leather utilities.
+*/
+@theme {
+  --color-page: #0c1013; /* deepest background */
+  --color-carbon: #23272b;
+  --color-panel: #1b2025; /* dark content-card surface */
+
+  --color-ink: #eff2f3; /* PRIMARY text (light) */
+  --color-ink-2: #dfe4e7;
+  --color-ink-3: #c4ccd1;
+  --color-muted: #9aa2a8; /* secondary text */
+  --color-fog: #7f888e; /* tertiary / captions */
+
+  --color-mist: #363c42; /* hairline border on dark */
+  --color-brand: #9aa2a8; /* eyebrows / rules (neutral, not cognac) */
+  --color-brand-2: #c6cbcf;
+
+  --color-pearl: #eff2f3; /* light text on dark surfaces */
+  --color-silver: #c6cbcf;
+  --color-silver-mist: #aeb6bc;
+
+  --color-cognac: #c98a5c;
+  --color-cognac-deep: #b77949;
+  --color-cream: #f3e5d4; /* body text on leather */
+  --color-cream-bright: #f8efe2; /* headings / phone on leather */
+  --color-cream-soft: #e6cfb5; /* eyebrow-weight labels on leather */
+
+  --color-trust: #3f9857; /* living status light */
+  --color-danger: #e06a5f;
+
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 10px 24px -16px rgb(0 0 0 / 0.6);
+  --shadow-card-hover: 0 26px 44px -22px rgb(0 0 0 / 0.7);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  /* Charcoal base — never pure black. The metallic ambience lives on the
+     fixed ::before layer below so it reads as showroom lighting, not a
+     scrolling pattern (and dodges iOS background-attachment quirks). */
+  background-color: #0a0c0d;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Premium dark-silver showroom atmosphere for every plain background:
+   a silver fade under the navbar, two soft overhead pools, a barely-visible
+   brushed sheen, over a charcoal depth gradient. Fixed to the viewport so
+   opaque sections (hero, footer) simply sit on top of it. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #0a0c0d;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.008) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, rgba(198, 203, 207, 0.07) 0, transparent 15%),
+    radial-gradient(90% 55% at 22% 0%, rgba(255, 255, 255, 0.055), transparent 58%),
+    radial-gradient(80% 52% at 82% 4%, rgba(150, 162, 172, 0.05), transparent 58%),
+    linear-gradient(180deg, #0b0d0f 0%, #121417 50%, #0a0c0d 100%);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-cognac);
+  color: #1a1210;
+}
+
+/* Cognac keyboard-focus halo (detail #6) */
+:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-page),
+    0 0 0 4px var(--color-cognac);
+  border-radius: 4px;
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+/* Tabular figures for prices / mileage (detail #5) */
+@utility nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Header: graphite / silver gradient (from svenljungabilcenter.se) ── */
+@utility bg-graphite-gradient {
+  background-image: linear-gradient(100deg, #1d2024 0%, #27252d 45%, #4b4d54 100%);
+}
+@utility bg-graphite-gradient-v {
+  background-image: linear-gradient(180deg, #27252d 0%, #1d2024 100%);
+}
+
+/* ── Smoked titanium — hero / page tops (strong texture) ── */
+@utility bg-titanium {
+  background-color: #181c20;
+  background-image:
+    linear-gradient(118deg, transparent 32%, rgba(255, 255, 255, 0.06) 47%, transparent 60%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0 1px, rgba(0, 0, 0, 0.1) 1px 3px),
+    linear-gradient(125deg, #373c42, #181c20 66%, #2b2930);
+}
+/* alias kept so existing PageHero / references inherit the dark hero */
+@utility bg-metal-titanium {
+  background-color: #181c20;
+  background-image:
+    linear-gradient(118deg, transparent 32%, rgba(255, 255, 255, 0.06) 47%, transparent 60%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0 1px, rgba(0, 0, 0, 0.1) 1px 3px),
+    linear-gradient(125deg, #373c42, #181c20 66%, #2b2930);
+}
+
+/* ── Gunmetal — informational bands (softer texture, −18% for text) ── */
+@utility bg-gunmetal {
+  background-color: #262b30;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.012) 0 1px, rgba(0, 0, 0, 0.04) 1px 3px),
+    linear-gradient(140deg, #363c42, #23282d);
+}
+
+/* ── Smoked silver — the trust strip (darker than bright chrome) ── */
+@utility bg-smoked {
+  background-color: #454c53;
+  background-image: linear-gradient(180deg, #3f464c 0%, #565e65 42%, #3b4248 72%, #4a525a 100%);
+}
+
+/* ── Carbon fibre weave — inventory band, cards, footer (−15%) ── */
+@utility bg-carbon {
+  background-color: #20242a;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.032) 0 2px, rgba(0, 0, 0, 0.2) 2px 4px),
+    linear-gradient(160deg, #23282d 0%, #1b1f24 100%);
+}
+
+/* ── Cognac leather — one conversion moment (darkened/desaturated ~10%) ── */
+@utility bg-leather {
+  background-color: #643e22;
+  background-image:
+    radial-gradient(120% 90% at 18% 0%, rgba(255, 255, 255, 0.1), transparent 52%),
+    radial-gradient(1.5px 1.5px at 12% 30%, rgba(0, 0, 0, 0.26), transparent),
+    radial-gradient(1.5px 1.5px at 45% 65%, rgba(0, 0, 0, 0.22), transparent),
+    radial-gradient(1.5px 1.5px at 78% 25%, rgba(0, 0, 0, 0.24), transparent),
+    radial-gradient(1.5px 1.5px at 62% 82%, rgba(0, 0, 0, 0.22), transparent),
+    radial-gradient(1.5px 1.5px at 28% 85%, rgba(0, 0, 0, 0.22), transparent),
+    linear-gradient(135deg, #7d512e, #5c3a20);
+}
+@utility leather-stitch {
+  border: 1.5px dashed rgba(240, 226, 205, 0.42);
+}
+
+/* ── Surfaces ── */
+/* Carbon card (vehicle cards) — every card answers the cursor with the
+   cognac highlight (Startsida v2: ring + glow + inner tint, kept restrained) */
+@utility surface-carbon {
+  background-color: #22272c;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.045) 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.035) 0 2px, rgba(0, 0, 0, 0.24) 2px 4px),
+    linear-gradient(150deg, #262b30, #1b1f24);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.5); /* machined edge (detail #2) */
+  box-shadow: 0 14px 28px -16px rgb(0 0 0 / 0.6);
+  transition: box-shadow 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  @media (hover: hover) {
+    &:hover {
+      box-shadow:
+        0 0 0 1.5px color-mix(in srgb, var(--color-cognac) 42%, transparent),
+        0 0 26px -4px color-mix(in srgb, var(--color-cognac) 38%, transparent),
+        inset 0 0 60px -18px color-mix(in srgb, var(--color-cognac) 30%, transparent),
+        0 18px 34px -18px rgb(0 0 0 / 0.6);
+    }
+  }
+}
+/* Metal content card (content cards, form containers): charcoal gradient,
+   silver-tinted border, machined top edge + soft inner highlight, deep shadow. */
+@utility surface-plate {
+  background-color: #14181c;
+  background-image: linear-gradient(158deg, #1c2126 0%, #14181c 62%, #10141a 100%);
+  border: 1px solid rgba(198, 203, 207, 0.14);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 20px 42px -22px rgb(0 0 0 / 0.66),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+@utility surface-plate-strong {
+  background-color: #171c21;
+  background-image: linear-gradient(158deg, #20252b 0%, #171c21 60%, #12161b 100%);
+  border: 1px solid rgba(198, 203, 207, 0.16);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 24px 48px -22px rgb(0 0 0 / 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* Machined-silver primary button */
+@utility btn-machined {
+  color: #20252a;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  background-image: linear-gradient(#f5f7f8, #bdc4c9 58%, #dce1e4);
+  --btn-shadow: 0 5px 12px rgb(0 0 0 / 0.4), inset 0 1px #fff;
+  box-shadow: var(--btn-shadow);
+}
+
+/* Cognac hover-highlight for buttons (Startsida v2) — ring + glow on top of
+   the variant's own depth shadow (kept in --btn-shadow where one exists). */
+@utility btn-cognac {
+  @media (hover: hover) {
+    &:hover {
+      box-shadow:
+        0 0 0 1.5px color-mix(in srgb, var(--color-cognac) 42%, transparent),
+        0 0 20px -3px color-mix(in srgb, var(--color-cognac) 38%, transparent),
+        var(--btn-shadow, 0 0 #0000);
+    }
+  }
+}
+
+/* Eyebrow label (wide tracking, echoes the wordmark) */
+@utility eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+@utility eyebrow-rule {
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+    vertical-align: middle;
+    margin-right: 0.75rem;
+    margin-bottom: 0.2em;
+  }
+}
+
+/* Cognac hover-glow for non-carbon interactive surfaces (e.g. the reviews
+   rating badge) — same ring + glow + inner tint as surface-carbon:hover. */
+@utility hover-cognac {
+  transition:
+    box-shadow 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  @media (hover: hover) {
+    &:hover {
+      box-shadow:
+        0 0 0 1.5px color-mix(in srgb, var(--color-cognac) 42%, transparent),
+        0 0 26px -4px color-mix(in srgb, var(--color-cognac) 38%, transparent),
+        inset 0 0 60px -18px color-mix(in srgb, var(--color-cognac) 30%, transparent),
+        0 20px 42px -22px rgb(0 0 0 / 0.66);
+    }
+  }
+}
+
+/* Silver text-link with an arrow that translates on hover */
+@utility lnk {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-silver);
+  & .arrow {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  &:hover .arrow {
+    transform: translateX(5px);
+  }
+}
+
+/* Scroll-triggered reveal */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Scale-in variant — a distinct entrance for feature moments (featured car,
+   showroom image) so the page doesn't fade every section identically. */
+.reveal-scale {
+  transform: translateY(14px) scale(0.985);
+  transform-origin: center;
+}
+.reveal-scale.is-visible {
+  transform: none;
+}
+/* No-JS / non-scripting crawlers never run the observer — show content
+   rather than shipping a blank section (the reveal enhances a visible base). */
+@media (scripting: none) {
+  .reveal,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Hero cinematic drift — a very slow Ken Burns on the full-bleed showroom
+   photo so the hero breathes. Under the scrim it reads as atmosphere, not gloss. */
+@keyframes hero-drift {
+  from { transform: scale(1.03); }
+  to { transform: scale(1.09) translate3d(-1.4%, -0.9%, 0); }
+}
+.hero-drift {
+  animation: hero-drift 30s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-drift {
+    animation: none;
+    transform: scale(1.03);
+  }
+}
+
+/* Instrument cluster "power-on" — the gauge ruler wipes in left→right and the
+   cognac redline drops into place, once on load. The page's signature
+   mechanical beat; the cluster sits above the fold so it's always seen. */
+@keyframes instr-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes instr-redline-in {
+  from { opacity: 0; transform: translateX(-22px); }
+  to { opacity: 1; transform: none; }
+}
+.instr-ruler {
+  animation: instr-wipe 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.35s both;
+}
+.instr-redline {
+  animation: instr-redline-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) 1.15s both;
+}
+
+/* Living status light — the green trust dots gently breathe (the token is
+   literally the "living status light"). Reinforces "a real person answers". */
+@keyframes pulse-live {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-trust) 55%, transparent);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 9px 1px color-mix(in srgb, var(--color-trust) 60%, transparent);
+  }
+}
+@utility pulse-live {
+  animation: pulse-live 2.4s ease-in-out infinite;
+}
+
+/* Hero entrance */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@utility rise-in {
+  opacity: 0;
+  animation: rise-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+/* Floating hero card: rise once, then a slow mechanical drift */
+@keyframes hero-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+@utility float-card {
+  opacity: 0;
+  animation:
+    rise-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards,
+    hero-float 5s 2.2s ease-in-out infinite alternate;
+}
+
+/* Hero slideshow Ken Burns — slow zoom/drift on the active slide */
+@keyframes hero-kenburns {
+  from { transform: scale(1.005) translate3d(0, 0, 0); }
+  to { transform: scale(1.06) translate3d(-1.2%, -0.8%, 0); }
+}
+
+/* Instrument-cluster dial (detail #3) — hero only, drawn once */
+@keyframes draw-arc {
+  from { stroke-dashoffset: 360; }
+  to { stroke-dashoffset: 96; }
+}
+.dial-arc {
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  animation: draw-arc 1.6s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .rise-in,
+  .float-card {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .dial-arc {
+    animation: none;
+    stroke-dashoffset: 96;
+  }
+  .instr-ruler,
+  .instr-redline,
+  .pulse-live {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Slim charcoal/silver scrollbar on pointer devices — keeps the dark showroom
+   mood on desktop; mobile keeps its native overlay bar. */
+@media (pointer: fine) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #39414a transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #454d55, #2b3137);
+    border-radius: 9px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #545d66, #363d44);
+    background-clip: padding-box;
+  }
+}

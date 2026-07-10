@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-04T00:00:00Z",
+  "title": "Design System: Svenljunga Bilcenter",
+  "extensions": {
+    "colorMeta": {
+      "page": { "role": "neutral", "displayName": "Graphite Void", "canonical": "#0c1013", "tonalRamp": ["#05080a", "#0c1013", "#161b20", "#23272b", "#363c42", "#5a636a", "#8c959c", "#c4ccd1"] },
+      "carbon": { "role": "neutral", "displayName": "Carbon Surface", "canonical": "#23272b", "tonalRamp": ["#0e1113", "#161a1d", "#1b1f24", "#23272b", "#2f353b", "#454d55", "#6b747c", "#a9b1b8"] },
+      "cognac": { "role": "primary", "displayName": "Cognac Leather", "canonical": "#c98a5c", "tonalRamp": ["#3a2413", "#5c3a20", "#7d512e", "#a86a3f", "#b77949", "#c98a5c", "#dcae86", "#f3e5d4"] },
+      "silver": { "role": "secondary", "displayName": "Brushed Silver", "canonical": "#c6cbcf", "tonalRamp": ["#3b4045", "#565e65", "#7f888e", "#9aa2a8", "#aeb6bc", "#c6cbcf", "#dfe4e7", "#eff2f3"] },
+      "trust": { "role": "tertiary", "displayName": "Living Green", "canonical": "#3f9857", "tonalRamp": ["#16341f", "#1e4a2c", "#2a6b3d", "#358049", "#3f9857", "#57b06f", "#7cc790", "#aaddb8"] },
+      "ink": { "role": "neutral", "displayName": "Cool White Ink", "canonical": "#eff2f3", "tonalRamp": ["#7f888e", "#9aa2a8", "#aeb6bc", "#c4ccd1", "#dfe4e7", "#eff2f3", "#f6f8f8", "#ffffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only, one per page. Manrope 700." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings. Manrope 700." },
+      "title": { "displayName": "Title", "purpose": "Card titles, vehicle names. Manrope 600." },
+      "body": { "displayName": "Body", "purpose": "Running Swedish copy, 65-75ch. Instrument Sans 400." },
+      "label": { "displayName": "Label / Eyebrow", "purpose": "Neutral silver eyebrows, wide 0.24em tracking, uppercase." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "0 14px 28px -16px rgb(0 0 0 / 0.6)", "purpose": "Default lift for carbon vehicle cards and panels on the dark void." },
+      { "name": "card-hover", "value": "0 26px 44px -22px rgb(0 0 0 / 0.7)", "purpose": "Deeper, softer pool on hover — the surface rises, it does not glow." },
+      { "name": "machined-button", "value": "0 5px 12px rgb(0 0 0 / 0.4), inset 0 1px #fff", "purpose": "The inset white line is the milled top edge of the silver plate button." }
+    ],
+    "motion": [
+      { "name": "ease-mechanical", "value": "cubic-bezier(0.2, 0.7, 0.2, 1)", "purpose": "Default easing for reveals, hero rise, and the dial draw." },
+      { "name": "dial-draw", "value": "draw-arc 1.6s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards", "purpose": "Hero instrument-cluster arc draws once on load, freezes drawn under reduced-motion." },
+      { "name": "hero-float", "value": "hero-float 5s 2.2s ease-in-out infinite alternate", "purpose": "Slow mechanical drift of the floating hero card after it rises in." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Machined Silver)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The milled bright plate CTA — dark ink on a brushed-silver gradient, used for primary actions.",
+      "html": "<button class=\"ds-btn-primary\">Se bilar i lager</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.76); background-image: linear-gradient(#f5f7f8, #bdc4c9 58%, #dce1e4); color: #20252a; font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 12px rgb(0 0 0 / 0.4), inset 0 1px #fff; cursor: pointer; transition: filter .2s, transform .2s; } .ds-btn-primary:hover { filter: brightness(1.05); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #0c1013, 0 0 0 4px #c98a5c; }"
+    },
+    {
+      "name": "Leather Button (Conversion)",
+      "kind": "button",
+      "refersTo": "button-leather",
+      "description": "The single warm cognac-leather CTA at the sell/valuation moment. Used once per page.",
+      "html": "<button class=\"ds-btn-leather\">Få en gratis värdering</button>",
+      "css": ".ds-btn-leather { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 9999px; background-color: #643e22; background-image: radial-gradient(120% 90% at 18% 0%, rgba(255,255,255,0.1), transparent 52%), linear-gradient(135deg, #7d512e, #5c3a20); color: #f3e5d4; font-family: Manrope, sans-serif; font-weight: 600; font-size: 1rem; border: none; cursor: pointer; box-shadow: 0 14px 28px -16px rgb(0 0 0 / 0.6); transition: filter .2s; } .ds-btn-leather:hover { filter: brightness(1.08); } .ds-btn-leather:focus-visible { outline: none; box-shadow: 0 0 0 2px #0c1013, 0 0 0 4px #c98a5c; }"
+    },
+    {
+      "name": "Outline Button (Ghost on Dark)",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action — a light hairline on a faint wash that brightens on hover.",
+      "html": "<button class=\"ds-btn-outline\">Kontakta oss</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); color: #eff2f3; font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: border-color .2s, background .2s; } .ds-btn-outline:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.09); } .ds-btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 2px #0c1013, 0 0 0 4px #c98a5c; }"
+    },
+    {
+      "name": "Carbon Vehicle Card",
+      "kind": "card",
+      "refersTo": "card-carbon",
+      "description": "Woven carbon-fibre vehicle card with a machined top edge, photo, tabular price that never wraps.",
+      "html": "<article class=\"ds-card-carbon\"><div class=\"ds-card-img\"></div><div class=\"ds-card-body\"><h3 class=\"ds-card-title\">Volvo XC60</h3><p class=\"ds-card-meta\">2021 · 4 500 mil · Diesel</p><div class=\"ds-card-foot\"><span class=\"ds-card-price\">289 000 kr</span><span class=\"ds-card-arrow\">→</span></div></div></article>",
+      "css": ".ds-card-carbon { border-radius: 1rem; overflow: hidden; background-color: #22272c; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 4px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.035) 0 2px, rgba(0,0,0,0.24) 2px 4px), linear-gradient(150deg, #262b30, #1b1f24); border: 1px solid rgba(255,255,255,0.12); border-top: 1.5px solid rgba(255,255,255,0.5); box-shadow: 0 14px 28px -16px rgb(0 0 0 / 0.6); transition: box-shadow .25s, transform .25s; } .ds-card-carbon:hover { box-shadow: 0 26px 44px -22px rgb(0 0 0 / 0.7); transform: translateY(-3px); } .ds-card-img { aspect-ratio: 3/2; background: #20242a; } .ds-card-body { padding: 16px 20px 20px; } .ds-card-title { font-family: Manrope, sans-serif; font-weight: 600; font-size: 1.25rem; color: #eff2f3; margin: 0; } .ds-card-meta { font-family: 'Instrument Sans', sans-serif; color: #9aa2a8; font-size: 0.9rem; margin: 4px 0 16px; font-variant-numeric: tabular-nums; } .ds-card-foot { display: flex; align-items: center; justify-content: space-between; } .ds-card-price { font-family: Manrope, sans-serif; font-weight: 700; color: #eff2f3; font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-card-arrow { color: #c6cbcf; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Dark form field — faint wash, hairline border, cognac focus shift.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Ditt namn\" />",
+      "css": ".ds-input { width: 100%; border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); padding: 12px 16px; font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; color: #eff2f3; transition: border-color .2s, background .2s; } .ds-input::placeholder { color: #7f888e; } .ds-input:focus { outline: none; border-color: #c98a5c; background: rgba(255,255,255,0.08); box-shadow: 0 0 0 2px rgba(201,138,92,0.3); }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Graphite/silver gradient bar with real accessible links and a machined CTA.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-mark\">Svenljunga Bilcenter</span><div class=\"ds-nav-links\"><a href=\"#\">Hem</a><a href=\"#\">Bilar</a><a href=\"#\">Om oss</a></div><button class=\"ds-nav-cta\">Kontakt</button></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 36px; padding: 14px 28px; background-image: linear-gradient(100deg, #1d2024 0%, #27252d 45%, #4b4d54 100%); } .ds-nav-mark { font-family: Manrope, sans-serif; font-weight: 700; letter-spacing: 0.02em; color: #eff2f3; } .ds-nav-links { display: flex; gap: 36px; } .ds-nav-links a { font-family: Manrope, sans-serif; font-size: 0.9rem; color: #c4ccd1; text-decoration: none; transition: color .15s; } .ds-nav-links a:hover { color: #ffffff; } .ds-nav-cta { padding: 10px 20px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.76); background-image: linear-gradient(#f5f7f8, #bdc4c9 58%, #dce1e4); color: #20252a; font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.85rem; cursor: pointer; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lit Showroom After Hours",
+    "overview": "Dark automotive craft: smoked-titanium heroes, gunmetal informational bands, carbon-fibre cards and footer, a graphite/silver header, and exactly one warm cognac-leather moment at conversion. Materials are genuinely present but disciplined, never theatrical. The tone is trygg, tydlig, personlig — dark but warm and human, a serious well-run local shop, not a cold luxury boutique or a neon car ad. Trust is earned by specificity — real logo, real inventory, real address — not by gloss. The only true colour on the page is the clean photography of the real stock.",
+    "keyCharacteristics": [
+      "Dark by conviction — deepest surface #0c1013, light primary text #eff2f3.",
+      "Real materials with a machined top edge, never flat dark-mode gray.",
+      "Cognac warmth held to ~3%: focus rings, one seam, one leather CTA.",
+      "Photography is the only saturated colour; textures never sit over photos.",
+      "Tabular numerals everywhere numbers matter; Manrope + Instrument Sans."
+    ],
+    "rules": [
+      { "name": "The 3% Cognac Rule", "body": "The cognac accent appears on <=3-5% of any screen: focus rings, one seam, one CTA. Its rarity is the point — the moment it becomes a section background or a per-card arrow colour, the warmth is spent. Metal (silver) carries structure; cognac carries the one human moment.", "section": "colors" },
+      { "name": "The Neutral-Eyebrow Rule", "body": "Eyebrows and section rules use muted silver-grey (#9aa2a8), never cognac. Warmth is a destination (the CTA), not a decoration sprinkled across headings.", "section": "colors" },
+      { "name": "The Instrument-Cluster Rule", "body": "Every price, mileage, and year uses tabular figures (font-variant-numeric: tabular-nums) and prices never wrap. Numbers should line up column-to-column like a dashboard readout.", "section": "typography" },
+      { "name": "The Machined-Edge Rule", "body": "Elevation is signalled by the bright 1.5px top border (the milled lip), not by a glow or a coloured ring. If a raised surface has no border-top highlight, it looks like flat dark-mode gray — that's the failure.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep cognac at ~3-5%: focus rings, one seam, one leather CTA. Everything else structural is silver/metal or neutral grey.",
+      "Do give every raised surface a bright 1.5px machined top edge; that lip, not a shadow, is how depth reads on this dark page.",
+      "Do use tabular figures for every price, mileage, and year, and keep prices on one line.",
+      "Do let the real vehicle photography be the only saturated colour; keep it clean, and never lay a texture over a photo.",
+      "Do ship an already-visible default and enhance with reveals; provide a prefers-reduced-motion fallback for every animation.",
+      "Do use neutral silver-grey (#9aa2a8) for eyebrows and rules."
+    ],
+    "donts": [
+      "Don't build a generic SaaS landing: no Inter-for-everything, no purple/blue gradients, no hero-metric template, no eyebrow-on-every-section.",
+      "Don't turn this into a faceless marketplace (a Blocket/Bilweb clone); it is a dealer with a face, address, and phone.",
+      "Don't drift fashion / luxury-goods: no over-leathering. Cognac stays ~3%; leather is one moment, not a theme.",
+      "Don't do fake-luxury car-ad gloss: no neon rim-light hero renders, no shouting hero type, no manufactured hype.",
+      "Don't ship AI-slop tells: no gradient text, no default glassmorphism, no 01/02/03 numbered section scaffolding, no side-stripe accent borders, no invented stats.",
+      "Don't let a raised surface go flat: a card with no machined top edge reads as 2020-era dark-mode gray.",
+      "Don't put cognac on every card arrow or as a section fill — the moment it repeats, the warmth is spent."
+    ]
+  }
+}
