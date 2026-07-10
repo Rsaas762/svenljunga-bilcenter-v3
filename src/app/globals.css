@@ -6,7 +6,7 @@
 
   Smoked-titanium heroes, gunmetal informational bands, carbon-fibre
   cards/footer, a graphite/silver header, and one restrained cognac-leather
-  conversion moment (~3%: focus rings, material seams, the sell CTA).
+  conversion moment (focus rings, text selection, the sell CTA — nothing else).
   Bright, clean vehicle photography is the only real colour.
   Typography: Manrope (display) + Instrument Sans (body).
 
@@ -362,18 +362,6 @@ h4 {
   animation: rise-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
 
-/* Floating hero card: rise once, then a slow mechanical drift */
-@keyframes hero-float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-6px); }
-}
-@utility float-card {
-  opacity: 0;
-  animation:
-    rise-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards,
-    hero-float 5s 2.2s ease-in-out infinite alternate;
-}
-
 /* Hero slideshow Ken Burns — slow zoom/drift on the active slide */
 @keyframes hero-kenburns {
   from { transform: scale(1.005) translate3d(0, 0, 0); }
@@ -390,30 +378,14 @@ h4 {
   animation: scroll-cue 2.6s ease-in-out infinite;
 }
 
-/* Instrument-cluster dial (detail #3) — hero only, drawn once */
-@keyframes draw-arc {
-  from { stroke-dashoffset: 360; }
-  to { stroke-dashoffset: 96; }
-}
-.dial-arc {
-  stroke-dasharray: 360;
-  stroke-dashoffset: 360;
-  animation: draw-arc 1.6s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .rise-in,
-  .float-card,
   .scroll-cue {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
     transition: none !important;
-  }
-  .dial-arc {
-    animation: none;
-    stroke-dashoffset: 96;
   }
   .pulse-live {
     animation: none;

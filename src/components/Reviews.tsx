@@ -1,7 +1,7 @@
 import { Reveal } from "./Reveal";
 import { reviewsConfirmed, site } from "@/lib/site";
 
-/** Cognac rating stars — warm accent, on-brand (no gold). */
+/** Cream rating stars — quiet warmth without spending the cognac accent. */
 function Stars({ n }: { n: number }) {
   return (
     <span
@@ -37,7 +37,7 @@ export function Reviews() {
   const r = site.reviews;
 
   return (
-    <section className="bg-gunmetal border-y border-white/10">
+    <section className="bg-carbon">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-24">
         <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
           <div className="max-w-xl">

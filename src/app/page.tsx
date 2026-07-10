@@ -137,7 +137,7 @@ export default function Home() {
             style={{ animationDelay: "0.5s" }}
           >
             <span className="font-display font-bold">{inStock.length}</span>{" "}
-            bilar i lager
+            {inStock.length === 1 ? "bil" : "bilar"} i lager
           </p>
         )}
 
@@ -173,19 +173,19 @@ export default function Home() {
               Sälj din bil
             </LinkButton>
           </div>
-          {/* Trust facts — folded in from the removed instrument cluster */}
+          {/* One line of practical facts — address + the two core promises */}
           <p
-            className="rise-in mt-7 text-[0.8rem] text-ink-3"
+            className="rise-in mt-7 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8rem] text-ink-3"
             style={{ animationDelay: "0.55s" }}
           >
-            Alla märken · Fri värdering · Svar inom ~1 arbetsdag
-          </p>
-          <p
-            className="rise-in mt-2.5 inline-flex items-center gap-2 text-[0.8rem] text-muted"
-            style={{ animationDelay: "0.65s" }}
-          >
-            <PinIcon className="text-silver" /> {site.address.street},{" "}
-            {site.address.zip} {site.address.city}
+            <span className="inline-flex items-center gap-2">
+              <PinIcon className="text-silver" /> {site.address.street},{" "}
+              {site.address.city}
+            </span>
+            <span aria-hidden="true" className="text-muted">·</span>
+            <span>Alla märken</span>
+            <span aria-hidden="true" className="text-muted">·</span>
+            <span>Fri värdering</span>
           </p>
         </div>
 
