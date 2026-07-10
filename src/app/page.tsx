@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CarCard } from "@/components/CarCard";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { CountUp } from "@/components/CountUp";
 import { Reveal } from "@/components/Reveal";
 import { Reviews } from "@/components/Reviews";
@@ -38,10 +39,27 @@ const services = [
   {
     title: "Finansiering & garanti",
     body: "Förmånlig ränta genom Santander och trygga garantipaket via GarantiPartner — vi hjälper dig hela vägen.",
-    cta: "Kontakta oss",
-    href: "/kontakt",
+    cta: "Se tjänster & tillval",
+    href: "/tjanster",
   },
 ];
+
+// The three pillars of how the dealership works — verified positioning
+// (märkesoberoende, rekond innan försäljning, Santander + GarantiPartner).
+const pillars = [
+  {
+    title: "Personligt engagemang",
+    body: "Hos oss pratar du med samma person genom hela affären — från första frågan till nyckeln i handen. Inga växlar, inga säljmanus.",
+  },
+  {
+    title: "Genomarbetade bilar",
+    body: "Varje bil kontrolleras och rekonditioneras innan den ställs ut i hallen. Det du ser i annonsen är det du får.",
+  },
+  {
+    title: "Trygghet hela vägen",
+    body: "Finansiering via Santander och garanti via GarantiPartner. Vi går igenom vad som gäller för just din bil — innan du bestämmer dig.",
+  },
+] as const;
 
 // Real partner logos on the smoked-silver trust strip (from svenljungabilcenter.se).
 const partnerLogos = [
@@ -171,6 +189,47 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* ── Öppettider — slim smoked strip right under the hero ──── */}
+      {hoursConfirmed && (
+        <section aria-label="Öppettider" className="bg-smoked border-b border-white/10">
+          <div className="mx-auto max-w-6xl px-5 py-4 sm:px-8">
+            <div className="flex flex-col items-start gap-x-8 gap-y-2 min-[880px]:flex-row min-[880px]:items-center min-[880px]:justify-between">
+              <div className="flex flex-wrap items-center gap-x-7 gap-y-1.5">
+                <span className="eyebrow text-[0.62rem] text-pearl/65">
+                  Öppettider
+                </span>
+                {site.hours.map((h) => (
+                  <span
+                    key={h.days}
+                    className="text-[0.82rem] text-ink-3"
+                  >
+                    {h.days}{" "}
+                    <span className="nums whitespace-nowrap text-pearl">
+                      {h.time}
+                    </span>
+                  </span>
+                ))}
+              </div>
+              <a
+                href={site.phoneHref}
+                className="nums inline-flex items-center gap-2 py-0.5 text-[0.86rem] font-semibold text-silver transition-colors hover:text-pearl"
+              >
+                <span
+                  aria-hidden="true"
+                  className="pulse-live h-1.5 w-1.5 rounded-full bg-trust"
+                />
+                {site.phone}
+              </a>
+            </div>
+            {site.hoursNotice && (
+              <p className="mt-2.5 border-t border-white/10 pt-2.5 text-[0.82rem] text-cream-soft">
+                {site.hoursNotice}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* ── Instrument cluster — gunmetal binnacle with a gauge ruler ─ */}
       <section className="bg-gunmetal">
@@ -352,6 +411,37 @@ export default function Home() {
               </div>
             </Reveal>
           )}
+        </div>
+      </section>
+
+      {/* ── Vårt sätt att göra affärer — three pillars on gunmetal ── */}
+      <section className="bg-gunmetal border-y border-white/10">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-24">
+          <SectionHeader
+            onDark
+            align="center"
+            eyebrow="Vårt sätt att göra affärer"
+            title="Personligt, genomarbetat och tryggt"
+            intro="En bilaffär ska kännas bra både när du skriver på och långt efteråt. Så här jobbar vi för att du ska kunna känna dig lugn."
+          />
+          <div className="mt-11 grid gap-6 min-[700px]:grid-cols-3">
+            {pillars.map((p, i) => (
+              <Reveal key={p.title} delay={i * 120} className="h-full">
+                <div className="surface-carbon flex h-full flex-col rounded-2xl p-8">
+                  <span
+                    aria-hidden="true"
+                    className="block h-px w-9 bg-cognac"
+                  />
+                  <h3 className="font-display mt-5 text-[1.25rem] font-bold text-pearl">
+                    {p.title}
+                  </h3>
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">
+                    {p.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -549,6 +639,50 @@ export default function Home() {
                 </div>
               </Reveal>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Hör av dig — direct contact form before the footer ───── */}
+      <section className="bg-gunmetal border-t border-white/10" id="kontakt">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-24">
+          <div className="grid gap-11 lg:grid-cols-[1fr_1.3fr]">
+            <div>
+              <SectionHeader
+                onDark
+                eyebrow="Hör av dig"
+                title="Fråga oss om vad som helst"
+                intro="Undrar du något om en bil, ett inbyte eller finansiering? Skriv några rader så återkommer vi — normalt inom en arbetsdag."
+              />
+              <Reveal delay={120}>
+                <div className="mt-8 space-y-4">
+                  <a
+                    href={site.phoneHref}
+                    className="nums font-display block w-fit text-[1.6rem] font-bold text-pearl transition-colors hover:text-silver"
+                  >
+                    {site.phone}
+                  </a>
+                  <a
+                    href={site.emailHref}
+                    className="block w-fit py-1 text-[0.95rem] text-ink-3 transition-colors hover:text-pearl"
+                  >
+                    {site.email}
+                  </a>
+                  <p className="inline-flex items-center gap-2 text-[0.8rem] text-muted">
+                    <span
+                      aria-hidden="true"
+                      className="pulse-live h-2 w-2 rounded-full bg-trust"
+                    />
+                    Du får svar av en människa — inte en växel.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+            <Reveal delay={100}>
+              <div className="surface-plate-strong rounded-3xl p-7 sm:p-9">
+                <ContactForm />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

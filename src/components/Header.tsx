@@ -11,7 +11,9 @@ import { navigation } from "@/lib/site";
 const desktopNav = [
   { href: "/", label: "Hem" },
   { href: "/bilar", label: "Bilar" },
+  { href: "/tjanster", label: "Tjänster" },
   { href: "/hitta-min-bil", label: "Hitta bil" },
+  { href: "/vanliga-fragor", label: "Frågor" },
   { href: "/om-oss", label: "Om oss" },
   { href: "/kontakt", label: "Kontakt" },
 ] as const;

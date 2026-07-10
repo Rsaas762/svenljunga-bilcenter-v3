@@ -8,6 +8,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/bilar",
     "/salj-din-bil",
     "/hitta-min-bil",
+    "/tjanster",
+    "/vanliga-fragor",
     "/om-oss",
     "/kontakt",
   ].map((path) => ({

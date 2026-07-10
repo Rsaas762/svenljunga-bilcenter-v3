@@ -50,6 +50,13 @@ export const site = {
     { days: "Söndag", time: "10:00–14:00" },
   ],
 
+  /**
+   * Avvikande öppettider (semester, röda dagar). Shown prominently in the
+   * hours strip on the home page when non-empty — leave "" to hide.
+   * Example: "Vecka 29–30 har vi semesterstängt — ring så bokar vi en tid."
+   */
+  hoursNotice: "",
+
   // ── Trust figures (NOT PUBLISHED — confirm before showing) ────────
   stats: {
     yearsInBusiness: "[ÅR]",
@@ -119,6 +126,8 @@ export const navigation = [
   { label: "Bilar i lager", href: "/bilar" },
   { label: "Sälj din bil", href: "/salj-din-bil" },
   { label: "Hitta min bil", href: "/hitta-min-bil" },
+  { label: "Tjänster & tillval", href: "/tjanster" },
+  { label: "Vanliga frågor", href: "/vanliga-fragor" },
   { label: "Om oss", href: "/om-oss" },
   { label: "Kontakt", href: "/kontakt" },
 ] as const;
