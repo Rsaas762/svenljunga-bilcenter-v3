@@ -95,9 +95,8 @@ export default async function CarDetailPage({ params }: Props) {
           <p className="nums font-display whitespace-nowrap text-3xl font-semibold text-pearl sm:text-4xl">
             {formatPrice(car.priceSek)}
           </p>
-          {/* cognac readout-tick — echoes the home instrument cluster's primary
-              reading, marking the price as the decision number */}
-          <span aria-hidden="true" className="mt-2 block h-px w-9 bg-cognac" />
+          {/* neutral readout-tick marking the price as the decision number */}
+          <span aria-hidden="true" className="mt-2 block h-px w-9 bg-white/15" />
         </div>
       </div>
 
@@ -175,7 +174,7 @@ export default async function CarDetailPage({ params }: Props) {
                   eller ring{" "}
                   <a
                     href={site.phoneHref}
-                    className="font-semibold text-silver underline decoration-white/30 underline-offset-2 transition-colors hover:text-cognac hover:decoration-cognac"
+                    className="font-semibold text-silver underline decoration-white/30 underline-offset-2 transition-colors hover:text-pearl hover:decoration-white/60"
                   >
                     {site.phone}
                   </a>

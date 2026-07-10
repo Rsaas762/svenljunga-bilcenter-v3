@@ -45,7 +45,7 @@ function ValueIcon({ name }: { name: string }) {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-6 w-6 text-cognac"
+      className="h-6 w-6 text-silver"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.7"
@@ -70,7 +70,6 @@ export default function OmOssPage() {
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-2">
           <SectionHeader
-            eyebrow="Lokalt förankrade"
             title="En bilhandlare du kan besöka, ringa och lita på"
           />
           <Reveal delay={100}>
@@ -144,7 +143,7 @@ export default function OmOssPage() {
                 href={site.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-silver underline decoration-white/30 underline-offset-2 transition-colors hover:text-cognac hover:decoration-cognac"
+                className="font-medium text-silver underline decoration-white/30 underline-offset-2 transition-colors hover:text-pearl hover:decoration-white/60"
               >
                 {site.address.street} i {site.address.city}
               </a>

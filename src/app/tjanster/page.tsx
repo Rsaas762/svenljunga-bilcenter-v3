@@ -118,7 +118,7 @@ export default function TjansterPage() {
                       >
                         <span
                           aria-hidden="true"
-                          className="mt-[0.55rem] h-px w-4 shrink-0 bg-cognac"
+                          className="mt-[0.55rem] h-px w-4 shrink-0 bg-white/25"
                         />
                         {p}
                       </li>
@@ -141,7 +141,6 @@ export default function TjansterPage() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-24">
           <SectionHeader
             onDark
-            eyebrow="Runt själva affären"
             title="Det praktiska tar vi hand om"
             intro="Inbyte, rekond, hämtning eller en bil vi inte har inne ännu — säg till, så löser vi det."
           />

@@ -181,7 +181,7 @@ export function CarGallery({
                 aria-current={i === active ? "true" : undefined}
                 className={`relative aspect-[16/10] h-14 shrink-0 overflow-hidden rounded-lg transition focus-visible:outline-none ${
                   i === active
-                    ? "ring-2 ring-cognac"
+                    ? "ring-2 ring-silver"
                     : "opacity-55 hover:opacity-100"
                 }`}
               >

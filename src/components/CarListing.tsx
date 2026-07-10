@@ -214,7 +214,7 @@ export function CarListing({ cars }: { cars: Car[] }) {
             height="14"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--color-cognac)"
+            stroke="var(--color-silver)"
             strokeWidth="2.4"
             strokeLinecap="round"
             strokeLinejoin="round"

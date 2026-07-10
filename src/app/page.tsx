@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { CarCard } from "@/components/CarCard";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { CountUp } from "@/components/CountUp";
 import { Reveal } from "@/components/Reveal";
 import { Reviews } from "@/components/Reviews";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -89,27 +88,10 @@ function PinIcon({ className = "" }: { className?: string }) {
   );
 }
 
-/** Thin stitched cognac-leather seam — a material transition between bands. */
-function LeatherSeam() {
-  return (
-    <div
-      aria-hidden="true"
-      className="bg-leather h-2.5 border-y border-dashed border-[#f0e2cd]/45"
-    />
-  );
-}
-
 export default function Home() {
   const inStock = inStockCars();
   const lead = inStock[0];
   const rest = inStock.slice(1, 4);
-
-  const instrument = [
-    { k: "Bilar i lager", v: String(inStock.length), caption: "i lager just nu", primary: true },
-    { k: "Urval", v: "Alla märken", caption: "märkesoberoende" },
-    { k: "Värdering", v: "Kostnadsfri", caption: "utan förpliktelser" },
-    { k: "Svarstid", v: "~1 arbetsdag", caption: "vi hör av oss", live: true },
-  ];
 
   const leadSpecs = [
     { label: "Årsmodell", value: String(lead.year) },
@@ -148,6 +130,17 @@ export default function Home() {
           }}
         />
 
+        {/* Live stock badge — the instrument cluster's key fact, folded in */}
+        {inStock.length > 0 && (
+          <p
+            className="nums rise-in absolute right-5 top-24 rounded-full bg-black/45 px-3.5 py-1.5 text-xs font-medium text-pearl ring-1 ring-white/10 backdrop-blur-md sm:right-8"
+            style={{ animationDelay: "0.5s" }}
+          >
+            <span className="font-display font-bold">{inStock.length}</span>{" "}
+            bilar i lager
+          </p>
+        )}
+
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-32 sm:px-8 sm:pb-24 lg:pb-28">
           <p
             className="eyebrow eyebrow-rule rise-in text-silver"
@@ -180,8 +173,15 @@ export default function Home() {
               Sälj din bil
             </LinkButton>
           </div>
+          {/* Trust facts — folded in from the removed instrument cluster */}
           <p
-            className="rise-in mt-7 inline-flex items-center gap-2 text-[0.8rem] text-muted"
+            className="rise-in mt-7 text-[0.8rem] text-ink-3"
+            style={{ animationDelay: "0.55s" }}
+          >
+            Alla märken · Fri värdering · Svar inom ~1 arbetsdag
+          </p>
+          <p
+            className="rise-in mt-2.5 inline-flex items-center gap-2 text-[0.8rem] text-muted"
             style={{ animationDelay: "0.65s" }}
           >
             <PinIcon className="text-silver" /> {site.address.street},{" "}
@@ -192,7 +192,7 @@ export default function Home() {
         {/* Scroll cue — signals the fullscreen hero has more below it */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-6 hidden justify-center lg:flex"
+          className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center"
         >
           <span className="scroll-cue flex flex-col items-center gap-2 text-[0.6rem] font-medium uppercase tracking-[0.24em] text-pearl/45">
             Scrolla
@@ -242,86 +242,12 @@ export default function Home() {
         </section>
       )}
 
-      {/* ── Instrument cluster — gunmetal binnacle with a gauge ruler ─ */}
-      <section className="bg-gunmetal">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <div className="relative">
-            {/* Speedometer-style tick ruler across the top of the cluster */}
-            <div
-              aria-hidden="true"
-              className="instr-ruler pointer-events-none absolute inset-x-0 top-0 h-3.5"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(90deg, rgba(198,203,207,0.55) 0 1px, transparent 1px 13px), repeating-linear-gradient(90deg, rgba(198,203,207,0.8) 0 1.5px, transparent 1.5px 65px)",
-                backgroundSize: "100% 7px, 100% 13px",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "0 0, 0 0",
-                maskImage:
-                  "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)",
-                WebkitMaskImage:
-                  "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)",
-              }}
-            />
-            {/* Cognac redline tick — the one warm marker on the scale */}
-            <div
-              aria-hidden="true"
-              className="instr-redline pointer-events-none absolute top-0 hidden h-3.5 w-0.5 bg-cognac min-[940px]:block"
-              style={{ left: "76%", boxShadow: "0 0 8px 1px var(--color-cognac)" }}
-            />
-
-            <dl className="grid grid-cols-1 min-[560px]:grid-cols-2 min-[940px]:grid-cols-4">
-              {instrument.map((it, i) => (
-                <div
-                  key={it.k}
-                  className={`px-2 pb-8 pt-9 sm:px-8 ${
-                    i === 0
-                      ? ""
-                      : "border-t border-white/10 min-[560px]:border-t-0 min-[560px]:[&:nth-child(3)]:border-t min-[940px]:[&:nth-child(3)]:border-t-0 min-[560px]:border-l min-[560px]:[&:nth-child(odd)]:border-l-0 min-[940px]:border-l min-[940px]:[&:nth-child(odd)]:border-l"
-                  }`}
-                >
-                  <dt className="eyebrow text-[0.66rem] tracking-[0.22em] text-silver/85">
-                    {it.k}
-                  </dt>
-                  <dd
-                    className={`nums font-display mt-3 flex items-center gap-2.5 font-bold tracking-[-0.02em] ${
-                      it.primary
-                        ? "text-[2.1rem] text-pearl"
-                        : "text-[1.5rem] text-silver"
-                    }`}
-                  >
-                    {it.live && (
-                      <span
-                        aria-hidden="true"
-                        className="pulse-live h-2 w-2 shrink-0 rounded-full bg-trust"
-                      />
-                    )}
-                    {it.primary ? <CountUp value={Number(it.v)} /> : it.v}
-                  </dd>
-                  {/* readout underline — cognac tick on the primary gauge */}
-                  <span
-                    aria-hidden="true"
-                    className={`mt-2.5 block h-px w-9 ${
-                      it.primary ? "bg-cognac" : "bg-white/15"
-                    }`}
-                  />
-                  <p className="mt-2.5 text-[0.78rem] text-ink-3">{it.caption}</p>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      {/* Leather seam 1 — under the instrument strip */}
-      <LeatherSeam />
-
       {/* ── Bilar i lager — carbon, featured + grid ──────────────── */}
       <section className="bg-carbon" id="lager">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-24">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeader
               onDark
-              eyebrow="Bilar i lager"
               title="Genomgångna bilar, redo att köras"
               intro="Alla bilar går igenom vår kontroll innan de säljs. Är du intresserad? Skicka en förfrågan så återkommer vi inom en arbetsdag."
             />
@@ -378,8 +304,7 @@ export default function Home() {
                     </span>
                   </div>
                   <div className="flex flex-col p-8 sm:p-11">
-                    <p className="eyebrow text-silver">Ur lagret</p>
-                    <h3 className="font-display mt-3 text-[1.85rem] font-bold leading-[1.1] text-pearl">
+                    <h3 className="font-display text-[1.85rem] font-bold leading-[1.1] text-pearl">
                       {carTitle(lead)}
                     </h3>
                     {lead.variant && (
@@ -464,7 +389,7 @@ export default function Home() {
                 <div className="surface-carbon flex h-full flex-col rounded-2xl p-8">
                   <span
                     aria-hidden="true"
-                    className="block h-px w-9 bg-cognac"
+                    className="block h-px w-9 bg-white/15"
                   />
                   <h3 className="font-display mt-5 text-[1.25rem] font-bold text-pearl">
                     {p.title}
@@ -523,7 +448,6 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-24">
           <SectionHeader
             onDark
-            eyebrow="Så hjälper vi dig"
             title="Hela bilaffären på ett ställe"
             intro="Från köp och inbyte till försäljning, finansiering och garanti — vi tar hand om affären från början till slut, tryggt och personligt."
           />
@@ -580,9 +504,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Leather seam 2 — above "Titta in i Svenljunga" */}
-      <LeatherSeam />
 
       {/* ── Besök oss — carbon, showroom + practical info ────────── */}
       <section className="bg-carbon" id="besok">

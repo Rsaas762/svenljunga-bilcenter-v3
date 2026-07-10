@@ -64,7 +64,7 @@ export default function SaljDinBilPage() {
                     • Hellre prata direkt? Ring oss på{" "}
                     <a
                       href={site.phoneHref}
-                      className="font-semibold text-silver underline decoration-white/30 underline-offset-2 transition-colors hover:text-cognac hover:decoration-cognac"
+                      className="font-semibold text-silver underline decoration-white/30 underline-offset-2 transition-colors hover:text-pearl hover:decoration-white/60"
                     >
                       {site.phone}
                     </a>

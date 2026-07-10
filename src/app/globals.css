@@ -184,8 +184,8 @@ h4 {
 }
 
 /* ── Surfaces ── */
-/* Carbon card (vehicle cards) — every card answers the cursor with the
-   cognac highlight (Startsida v2: ring + glow + inner tint, kept restrained) */
+/* Carbon card (vehicle cards) — answers the cursor with a quiet silver
+   ring + lift (Bogstedt-restraint pass: cognac reserved for the sell-CTA). */
 @utility surface-carbon {
   background-color: #22272c;
   background-image:
@@ -199,10 +199,8 @@ h4 {
   @media (hover: hover) {
     &:hover {
       box-shadow:
-        0 0 0 1.5px color-mix(in srgb, var(--color-cognac) 42%, transparent),
-        0 0 26px -4px color-mix(in srgb, var(--color-cognac) 38%, transparent),
-        inset 0 0 60px -18px color-mix(in srgb, var(--color-cognac) 30%, transparent),
-        0 18px 34px -18px rgb(0 0 0 / 0.6);
+        0 0 0 1.5px color-mix(in srgb, var(--color-silver) 32%, transparent),
+        0 18px 34px -18px rgb(0 0 0 / 0.66);
     }
   }
 }
@@ -236,19 +234,6 @@ h4 {
   box-shadow: var(--btn-shadow);
 }
 
-/* Cognac hover-highlight for buttons (Startsida v2) — ring + glow on top of
-   the variant's own depth shadow (kept in --btn-shadow where one exists). */
-@utility btn-cognac {
-  @media (hover: hover) {
-    &:hover {
-      box-shadow:
-        0 0 0 1.5px color-mix(in srgb, var(--color-cognac) 42%, transparent),
-        0 0 20px -3px color-mix(in srgb, var(--color-cognac) 38%, transparent),
-        var(--btn-shadow, 0 0 #0000);
-    }
-  }
-}
-
 /* Eyebrow label (wide tracking, echoes the wordmark) */
 @utility eyebrow {
   font-size: 0.72rem;
@@ -270,18 +255,16 @@ h4 {
   }
 }
 
-/* Cognac hover-glow for non-carbon interactive surfaces (e.g. the reviews
-   rating badge) — same ring + glow + inner tint as surface-carbon:hover. */
-@utility hover-cognac {
+/* Quiet silver hover for non-carbon interactive surfaces (e.g. the reviews
+   rating badge) — ring + lift, matching surface-carbon:hover. */
+@utility hover-ring {
   transition:
     box-shadow 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
     transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
   @media (hover: hover) {
     &:hover {
       box-shadow:
-        0 0 0 1.5px color-mix(in srgb, var(--color-cognac) 42%, transparent),
-        0 0 26px -4px color-mix(in srgb, var(--color-cognac) 38%, transparent),
-        inset 0 0 60px -18px color-mix(in srgb, var(--color-cognac) 30%, transparent),
+        0 0 0 1.5px color-mix(in srgb, var(--color-silver) 32%, transparent),
         0 20px 42px -22px rgb(0 0 0 / 0.66);
     }
   }
@@ -351,24 +334,6 @@ h4 {
     animation: none;
     transform: scale(1.03);
   }
-}
-
-/* Instrument cluster "power-on" — the gauge ruler wipes in left→right and the
-   cognac redline drops into place, once on load. The page's signature
-   mechanical beat; the cluster sits above the fold so it's always seen. */
-@keyframes instr-wipe {
-  from { clip-path: inset(0 100% 0 0); }
-  to { clip-path: inset(0 0 0 0); }
-}
-@keyframes instr-redline-in {
-  from { opacity: 0; transform: translateX(-22px); }
-  to { opacity: 1; transform: none; }
-}
-.instr-ruler {
-  animation: instr-wipe 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.35s both;
-}
-.instr-redline {
-  animation: instr-redline-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) 1.15s both;
 }
 
 /* Living status light — the green trust dots gently breathe (the token is
@@ -450,8 +415,6 @@ h4 {
     animation: none;
     stroke-dashoffset: 96;
   }
-  .instr-ruler,
-  .instr-redline,
   .pulse-live {
     animation: none;
   }

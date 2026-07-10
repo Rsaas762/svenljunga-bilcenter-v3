@@ -40,7 +40,7 @@ export function FileField({
 
       <label
         htmlFor={id}
-        className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/20 bg-white/[0.03] px-4 py-6 text-center transition-colors hover:border-cognac/60 hover:bg-white/[0.05]"
+        className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/20 bg-white/[0.03] px-4 py-6 text-center transition-colors hover:border-white/40 hover:bg-white/[0.05]"
       >
         <svg
           aria-hidden="true"

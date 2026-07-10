@@ -10,7 +10,7 @@ import type {
 // ── Buttons ──────────────────────────────────────────────────────────
 
 const btnBase =
-  "btn-cognac inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-[color,background-color,border-color,box-shadow,filter,transform,opacity] duration-200 disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-[color,background-color,border-color,box-shadow,filter,transform,opacity] duration-200 disabled:cursor-not-allowed disabled:opacity-60";
 
 const btnStyles = {
   // Machined-silver plate: milled bright button, dark ink text
@@ -95,7 +95,7 @@ function FieldWrap({
         {label}
         {required ? (
           <>
-            <span className="text-cognac" aria-hidden="true">
+            <span className="text-silver" aria-hidden="true">
               {" "}
               *
             </span>
