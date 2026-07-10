@@ -123,8 +123,8 @@ export default function Home() {
       {/* ── Hero — full-bleed cinematic showroom, fullscreen ─────── */}
       <section className="bg-titanium relative flex min-h-[100svh] items-end overflow-hidden">
         <Image
-          src="/hero/showroom-interior.jpg"
-          alt="Svenljunga Bilcenters upplysta bilhall med bilar i lager"
+          src="/hero/showroom-lineup.jpg"
+          alt="Svenljunga Bilcenters upplysta bilhall med en rad genomgångna bilar i lager"
           fill
           priority
           sizes="100vw"
@@ -279,7 +279,7 @@ export default function Home() {
                       : "border-t border-white/10 min-[560px]:border-t-0 min-[560px]:[&:nth-child(3)]:border-t min-[940px]:[&:nth-child(3)]:border-t-0 min-[560px]:border-l min-[560px]:[&:nth-child(odd)]:border-l-0 min-[940px]:border-l min-[940px]:[&:nth-child(odd)]:border-l"
                   }`}
                 >
-                  <dt className="eyebrow text-[0.66rem] tracking-[0.22em] text-muted">
+                  <dt className="eyebrow text-[0.66rem] tracking-[0.22em] text-silver/85">
                     {it.k}
                   </dt>
                   <dd
@@ -304,7 +304,7 @@ export default function Home() {
                       it.primary ? "bg-cognac" : "bg-white/15"
                     }`}
                   />
-                  <p className="mt-2.5 text-[0.78rem] text-muted">{it.caption}</p>
+                  <p className="mt-2.5 text-[0.78rem] text-ink-3">{it.caption}</p>
                 </div>
               ))}
             </dl>
@@ -342,15 +342,39 @@ export default function Home() {
                   className="surface-carbon group grid overflow-hidden rounded-3xl md:grid-cols-[1.15fr_1fr]"
                 >
                   <div className="relative min-h-[260px] overflow-hidden md:min-h-[340px]">
-                    <Image
-                      src={lead.images[0]}
-                      alt={`${carTitle(lead)} ${lead.year}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 55vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
+                    {/* Both photos share one zoom wrapper; the second crossfades in on hover */}
+                    <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]">
+                      <Image
+                        src={lead.images[0]}
+                        alt={`${carTitle(lead)} ${lead.year}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 55vw"
+                        className="object-cover"
+                      />
+                      {lead.images[1] && (
+                        <Image
+                          src={lead.images[1]}
+                          alt=""
+                          aria-hidden="true"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 55vw"
+                          className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        />
+                      )}
+                    </div>
                     <span className="nums absolute left-4 top-4 rounded-full bg-black/55 px-3.5 py-1.5 text-xs font-medium text-pearl backdrop-blur-md">
                       Utvald ur lagret
+                    </span>
+                    {/* Brand watermark — frosted chip, sized up for the featured card */}
+                    <span className="pointer-events-none absolute bottom-4 right-4 flex items-center rounded-md bg-black/45 px-2.5 py-1.5 ring-1 ring-white/10 backdrop-blur-sm">
+                      <Image
+                        src="/brand/sb-logo.png"
+                        alt=""
+                        aria-hidden="true"
+                        width={1000}
+                        height={229}
+                        className="h-4 w-auto opacity-90"
+                      />
                     </span>
                   </div>
                   <div className="flex flex-col p-8 sm:p-11">
@@ -431,7 +455,6 @@ export default function Home() {
           <SectionHeader
             onDark
             align="center"
-            eyebrow="Vårt sätt att göra affärer"
             title="Personligt, genomarbetat och tryggt"
             intro="En bilaffär ska kännas bra både när du skriver på och långt efteråt. Så här jobbar vi för att du ska kunna känna dig lugn."
           />
@@ -480,7 +503,7 @@ export default function Home() {
                 </p>
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                   <LinkButton href="/salj-din-bil" variant="leather" size="lg">
-                    Få en gratis värdering →
+                    Få en fri värdering →
                   </LinkButton>
                   <a
                     href={site.phoneHref}
@@ -661,7 +684,6 @@ export default function Home() {
             <div>
               <SectionHeader
                 onDark
-                eyebrow="Hör av dig"
                 title="Fråga oss om vad som helst"
                 intro="Undrar du något om en bil, ett inbyte eller finansiering? Skriv några rader så återkommer vi — normalt inom en arbetsdag."
               />

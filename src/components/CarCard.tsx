@@ -8,16 +8,40 @@ export function CarCard({ car, priority = false }: { car: Car; priority?: boolea
   return (
     <article className="surface-carbon group relative flex min-w-0 flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:brightness-[1.15] has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-cognac has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-page">
       <div className="relative aspect-[4/3] overflow-hidden bg-carbon">
-        <Image
-          src={car.images[0]}
-          alt={`${carTitle(car)} ${car.year}`}
-          fill
-          priority={priority}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-        />
+        {/* Both photos share one zoom wrapper; the second crossfades in on hover */}
+        <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
+          <Image
+            src={car.images[0]}
+            alt={`${carTitle(car)} ${car.year}`}
+            fill
+            priority={priority}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover"
+          />
+          {car.images[1] && (
+            <Image
+              src={car.images[1]}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            />
+          )}
+        </div>
         <span className="nums absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-xs font-medium text-pearl backdrop-blur-sm">
           {car.year}
+        </span>
+        {/* Brand watermark — frosted chip mirrors the year chip so it reads on any photo */}
+        <span className="pointer-events-none absolute bottom-3 right-3 flex items-center rounded-md bg-black/45 px-2 py-1 ring-1 ring-white/10 backdrop-blur-sm">
+          <Image
+            src="/brand/sb-logo.png"
+            alt=""
+            aria-hidden="true"
+            width={1000}
+            height={229}
+            className="h-3.5 w-auto opacity-90"
+          />
         </span>
       </div>
 
