@@ -120,8 +120,8 @@ export default function Home() {
 
   return (
     <>
-      {/* ── Hero — full-bleed cinematic showroom ─────────────────── */}
-      <section className="bg-titanium relative flex min-h-[88vh] items-end overflow-hidden">
+      {/* ── Hero — full-bleed cinematic showroom, fullscreen ─────── */}
+      <section className="bg-titanium relative flex min-h-[100svh] items-end overflow-hidden">
         <Image
           src="/hero/showroom-interior.jpg"
           alt="Svenljunga Bilcenters upplysta bilhall med bilar i lager"
@@ -148,7 +148,7 @@ export default function Home() {
           }}
         />
 
-        <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-8 sm:pb-16">
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-32 sm:px-8 sm:pb-24 lg:pb-28">
           <p
             className="eyebrow eyebrow-rule rise-in text-silver"
             style={{ animationDelay: "0.05s" }}
@@ -187,6 +187,17 @@ export default function Home() {
             <PinIcon className="text-silver" /> {site.address.street},{" "}
             {site.address.zip} {site.address.city}
           </p>
+        </div>
+
+        {/* Scroll cue — signals the fullscreen hero has more below it */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-6 hidden justify-center lg:flex"
+        >
+          <span className="scroll-cue flex flex-col items-center gap-2 text-[0.6rem] font-medium uppercase tracking-[0.24em] text-pearl/45">
+            Scrolla
+            <span className="block h-9 w-px bg-gradient-to-b from-pearl/45 to-transparent" />
+          </span>
         </div>
       </section>
 

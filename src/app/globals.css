@@ -415,6 +415,16 @@ h4 {
   to { transform: scale(1.06) translate3d(-1.2%, -0.8%, 0); }
 }
 
+/* Scroll cue — the fullscreen hero's "there's more below" hint. The line
+   gently drifts down, fading in and out, so the fold reads as intentional. */
+@keyframes scroll-cue {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(4px); }
+}
+.scroll-cue {
+  animation: scroll-cue 2.6s ease-in-out infinite;
+}
+
 /* Instrument-cluster dial (detail #3) — hero only, drawn once */
 @keyframes draw-arc {
   from { stroke-dashoffset: 360; }
@@ -429,7 +439,8 @@ h4 {
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .rise-in,
-  .float-card {
+  .float-card,
+  .scroll-cue {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
