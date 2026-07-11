@@ -88,6 +88,16 @@ function PinIcon({ className = "" }: { className?: string }) {
   );
 }
 
+/** Thin stitched cognac-leather seam — a warm material transition between bands. */
+function LeatherSeam() {
+  return (
+    <div
+      aria-hidden="true"
+      className="bg-leather h-2.5 border-y border-dashed border-[#f0e2cd]/45"
+    />
+  );
+}
+
 export default function Home() {
   const inStock = inStockCars();
   const lead = inStock[0];
@@ -242,6 +252,9 @@ export default function Home() {
         </section>
       )}
 
+      {/* Leather seam — warm transition into the inventory band */}
+      <LeatherSeam />
+
       {/* ── Bilar i lager — carbon, featured + grid ──────────────── */}
       <section className="bg-carbon" id="lager">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-24">
@@ -389,7 +402,7 @@ export default function Home() {
                 <div className="surface-carbon flex h-full flex-col rounded-2xl p-8">
                   <span
                     aria-hidden="true"
-                    className="block h-px w-9 bg-white/15"
+                    className="block h-px w-9 bg-cognac"
                   />
                   <h3 className="font-display mt-5 text-[1.25rem] font-bold text-pearl">
                     {p.title}
@@ -467,7 +480,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="sm:flex sm:justify-end">
-                  <span className="btn-machined inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[0.9rem] font-semibold">
+                  <span className="btn-machined inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-[0.85rem] font-bold uppercase tracking-[0.03em] text-[#20252a] transition group-hover:brightness-105">
                     {services[0].cta}
                     <span
                       aria-hidden="true"
@@ -504,6 +517,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Leather seam — warm transition into "Besök oss" */}
+      <LeatherSeam />
 
       {/* ── Besök oss — carbon, showroom + practical info ────────── */}
       <section className="bg-carbon" id="besok">

@@ -131,7 +131,7 @@ export default function KontaktPage() {
                   <p className="mt-1 text-sm text-pearl/60">
                     Du hittar oss på Boråsvägen, mitt i Svenljunga.
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-2 btn-machined rounded-full px-5 py-2.5 text-sm font-semibold text-[#20252a] transition hover:brightness-105">
+                  <span className="mt-5 inline-flex items-center gap-2 btn-machined rounded-lg px-5 py-2.5 text-[0.8rem] font-bold uppercase tracking-[0.03em] text-[#20252a] transition group-hover:brightness-105">
                     Öppna i Google Maps
                     <span aria-hidden="true">↗</span>
                   </span>

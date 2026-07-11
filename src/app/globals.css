@@ -184,8 +184,8 @@ h4 {
 }
 
 /* ── Surfaces ── */
-/* Carbon card (vehicle cards) — answers the cursor with a quiet silver
-   ring + lift (Bogstedt-restraint pass: cognac reserved for the sell-CTA). */
+/* Carbon card (vehicle cards) — every card answers the cursor with the
+   cognac highlight (ring + glow + inner tint, kept restrained). */
 @utility surface-carbon {
   background-color: #22272c;
   background-image:
@@ -199,8 +199,10 @@ h4 {
   @media (hover: hover) {
     &:hover {
       box-shadow:
-        0 0 0 1.5px color-mix(in srgb, var(--color-silver) 32%, transparent),
-        0 18px 34px -18px rgb(0 0 0 / 0.66);
+        0 0 0 1.5px color-mix(in srgb, var(--color-cognac) 42%, transparent),
+        0 0 26px -4px color-mix(in srgb, var(--color-cognac) 38%, transparent),
+        inset 0 0 60px -18px color-mix(in srgb, var(--color-cognac) 30%, transparent),
+        0 18px 34px -18px rgb(0 0 0 / 0.6);
     }
   }
 }
@@ -255,18 +257,51 @@ h4 {
   }
 }
 
-/* Quiet silver hover for non-carbon interactive surfaces (e.g. the reviews
-   rating badge) — ring + lift, matching surface-carbon:hover. */
-@utility hover-ring {
+/* Cognac hover-glow for non-carbon interactive surfaces (e.g. the reviews
+   rating badge) — same ring + glow + inner tint as surface-carbon:hover. */
+@utility hover-cognac {
   transition:
     box-shadow 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
     transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
   @media (hover: hover) {
     &:hover {
       box-shadow:
-        0 0 0 1.5px color-mix(in srgb, var(--color-silver) 32%, transparent),
+        0 0 0 1.5px color-mix(in srgb, var(--color-cognac) 42%, transparent),
+        0 0 26px -4px color-mix(in srgb, var(--color-cognac) 38%, transparent),
+        inset 0 0 60px -18px color-mix(in srgb, var(--color-cognac) 30%, transparent),
         0 20px 42px -22px rgb(0 0 0 / 0.66);
     }
+  }
+}
+
+/* Bold button motion — cognac leather wipes across the plate on hover,
+   left→right, while the label flips to cream. Machined silver stays the
+   resting look. Wrap the button label in a relative z-[1] span. */
+@utility btn-sweep {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, #a8683d, #7c4d2c);
+    transform: translateX(-101%);
+    transition: transform 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  @media (hover: hover) {
+    &:hover::after {
+      transform: translateX(0);
+    }
+    &:hover {
+      color: var(--color-cream);
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-sweep::after {
+    transition: none;
   }
 }
 

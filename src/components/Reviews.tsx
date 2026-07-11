@@ -1,7 +1,7 @@
 import { Reveal } from "./Reveal";
 import { reviewsConfirmed, site } from "@/lib/site";
 
-/** Cream rating stars — quiet warmth without spending the cognac accent. */
+/** Cognac rating stars — the site's warm accent on the social proof. */
 function Stars({ n }: { n: number }) {
   return (
     <span
@@ -15,8 +15,8 @@ function Stars({ n }: { n: number }) {
           width="15"
           height="15"
           viewBox="0 0 24 24"
-          fill={i < n ? "var(--color-cream)" : "none"}
-          stroke="var(--color-cream)"
+          fill={i < n ? "var(--color-cognac)" : "none"}
+          stroke="var(--color-cognac)"
           strokeWidth="1.4"
           strokeLinejoin="round"
           aria-hidden="true"
@@ -55,7 +55,7 @@ export function Reviews() {
             href={r.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="surface-plate hover-ring group flex items-center gap-4 rounded-2xl px-5 py-4 hover:-translate-y-0.5"
+            className="surface-plate hover-cognac group flex items-center gap-4 rounded-2xl px-5 py-4 hover:-translate-y-0.5"
           >
             <span className="nums font-display text-[2.4rem] font-bold leading-none text-pearl">
               {r.rating}

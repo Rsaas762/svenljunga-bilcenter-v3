@@ -118,7 +118,7 @@ export default function TjansterPage() {
                       >
                         <span
                           aria-hidden="true"
-                          className="mt-[0.55rem] h-px w-4 shrink-0 bg-white/25"
+                          className="mt-[0.55rem] h-px w-4 shrink-0 bg-cognac"
                         />
                         {p}
                       </li>

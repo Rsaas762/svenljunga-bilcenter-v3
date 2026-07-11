@@ -69,8 +69,8 @@ export function Header() {
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={`text-[0.9rem] font-medium underline-offset-8 transition-colors hover:text-white ${
                     isActive(item.href)
-                      ? "text-white underline decoration-silver decoration-2"
-                      : "text-pearl/75 decoration-transparent hover:underline hover:decoration-white/30"
+                      ? "text-white underline decoration-cognac decoration-2"
+                      : "text-pearl/75 decoration-transparent hover:underline hover:decoration-cognac/40"
                   }`}
                 >
                   {item.label}
@@ -98,9 +98,9 @@ export function Header() {
         <div className="hidden lg:block">
           <Link
             href="/salj-din-bil"
-            className="btn-machined rounded-full px-6 py-2.5 text-[0.9rem] font-semibold text-[#20252a] transition-[filter,transform,box-shadow] duration-200 hover:brightness-105"
+            className="btn-machined btn-sweep rounded-lg px-6 py-3 text-[0.85rem] font-bold uppercase tracking-[0.03em] text-[#20252a] transition-[color,filter,transform,box-shadow] duration-200 active:translate-y-px"
           >
-            Sälj din bil
+            <span className="relative z-[1]">Sälj din bil</span>
           </Link>
         </div>
 
@@ -194,9 +194,9 @@ export function Header() {
             <Link
               href="/salj-din-bil"
               onClick={() => setOpen(false)}
-              className="btn-machined inline-block rounded-full px-7 py-3.5 text-base font-semibold text-[#20252a]"
+              className="btn-machined btn-sweep inline-block rounded-lg px-7 py-3.5 text-base font-bold uppercase tracking-[0.03em] text-[#20252a]"
             >
-              Sälj din bil — få en värdering
+              <span className="relative z-[1]">Sälj din bil — få en värdering</span>
             </Link>
           </div>
         </nav>

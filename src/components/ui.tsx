@@ -10,23 +10,23 @@ import type {
 // ── Buttons ──────────────────────────────────────────────────────────
 
 const btnBase =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-[color,background-color,border-color,box-shadow,filter,transform,opacity] duration-200 disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-lg font-bold uppercase tracking-[0.03em] transition-[color,background-color,border-color,box-shadow,filter,transform,opacity] duration-200 disabled:cursor-not-allowed disabled:opacity-60";
 
 const btnStyles = {
-  // Machined-silver plate: milled bright button, dark ink text
-  primary: `${btnBase} btn-machined text-[#20252a] hover:brightness-105 active:translate-y-px`,
-  // Carbon weave: dark, silver text
+  // Machined-silver plate at rest; cognac leather wipes across on hover
+  primary: `${btnBase} btn-machined btn-sweep text-[#20252a] active:translate-y-px`,
+  // Carbon weave: dark, silver text (regains cognac hover from surface-carbon)
   dark: `${btnBase} surface-carbon text-pearl hover:brightness-125`,
-  // Ghost on dark: light hairline, brightens on hover
-  outline: `${btnBase} border border-white/25 bg-white/[0.04] text-pearl hover:border-white/45 hover:bg-white/[0.09]`,
-  outlineOnDark: `${btnBase} border border-pearl/40 text-pearl hover:border-silver hover:text-silver`,
-  // Cognac leather: the ONE warm conversion moment (sell/valuation CTA only)
+  // Ghost on dark: light hairline, warms to cognac on hover
+  outline: `${btnBase} border border-white/25 bg-white/[0.04] text-pearl hover:border-cognac/50 hover:bg-cognac/[0.06] hover:text-white`,
+  outlineOnDark: `${btnBase} border border-pearl/40 text-pearl hover:border-cognac/60 hover:text-silver`,
+  // Cognac leather: the warmest CTA (sell/valuation) — already warm, no sweep
   leather: `${btnBase} bg-leather text-cream border border-cognac-deep/50 shadow-card hover:brightness-110 active:translate-y-px`,
 } as const;
 
 const btnSizes = {
-  md: "px-6 py-3 text-[0.9rem]",
-  lg: "px-8 py-4 text-base",
+  md: "px-7 py-3.5 text-[0.95rem]",
+  lg: "px-9 py-[1.05rem] text-[1.02rem]",
 } as const;
 
 export function LinkButton({
@@ -47,7 +47,9 @@ export function LinkButton({
       href={href}
       className={`${btnStyles[variant]} ${btnSizes[size]} ${className}`}
     >
-      {children}
+      <span className="relative z-[1] inline-flex items-center gap-2">
+        {children}
+      </span>
     </Link>
   );
 }
@@ -56,6 +58,7 @@ export function Button({
   variant = "primary",
   size = "md",
   className = "",
+  children,
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: keyof typeof btnStyles;
@@ -65,7 +68,11 @@ export function Button({
     <button
       {...props}
       className={`${btnStyles[variant]} ${btnSizes[size]} ${className}`}
-    />
+    >
+      <span className="relative z-[1] inline-flex items-center gap-2">
+        {children}
+      </span>
+    </button>
   );
 }
 
@@ -95,7 +102,7 @@ function FieldWrap({
         {label}
         {required ? (
           <>
-            <span className="text-silver" aria-hidden="true">
+            <span className="text-cognac" aria-hidden="true">
               {" "}
               *
             </span>

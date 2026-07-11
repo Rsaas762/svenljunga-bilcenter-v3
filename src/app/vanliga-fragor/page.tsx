@@ -109,7 +109,7 @@ export default function VanligaFragorPage() {
                   <div className="px-6 pb-6">
                     <span
                       aria-hidden="true"
-                      className="mb-4 block h-px w-9 bg-white/15"
+                      className="mb-4 block h-px w-9 bg-cognac"
                     />
                     <p className="text-[0.9375rem] leading-relaxed text-ink-3">
                       {f.a}

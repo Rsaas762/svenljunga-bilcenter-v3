@@ -96,7 +96,7 @@ export default async function CarDetailPage({ params }: Props) {
             {formatPrice(car.priceSek)}
           </p>
           {/* neutral readout-tick marking the price as the decision number */}
-          <span aria-hidden="true" className="mt-2 block h-px w-9 bg-white/15" />
+          <span aria-hidden="true" className="mt-2 block h-px w-9 bg-cognac" />
         </div>
       </div>
 
