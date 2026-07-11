@@ -98,7 +98,7 @@ export function Header() {
         <div className="hidden lg:block">
           <Link
             href="/salj-din-bil"
-            className="btn-machined btn-sweep rounded-lg px-6 py-3 text-[0.85rem] font-bold uppercase tracking-[0.03em] text-[#20252a] transition-[color,filter,transform,box-shadow] duration-200 active:translate-y-px"
+            className="btn-machined btn-sweep inline-flex items-center justify-center rounded-lg px-6 py-3 text-[0.85rem] font-bold uppercase tracking-[0.03em] text-[#20252a] transition-[color,filter,transform,box-shadow] duration-200 active:translate-y-px"
           >
             <span className="relative z-[1]">Sälj din bil</span>
           </Link>
